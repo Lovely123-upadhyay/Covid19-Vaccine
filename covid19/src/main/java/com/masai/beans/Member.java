@@ -17,10 +17,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
+//@Entity
 @Data
-@NoArgsConstructor
-@AllArgsConstructor
+//@NoArgsConstructor
+//@AllArgsConstructor
 public class Member {
 
 	@Id
@@ -41,9 +41,9 @@ public class Member {
 	private Boolean dose1;
 	private Boolean dose2;
 	
-	@ManyToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "user_id")
-	private User user;
+//	@ManyToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "user_id")
+//	private User user;
 
 	
 	
