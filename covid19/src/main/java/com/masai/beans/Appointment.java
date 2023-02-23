@@ -7,7 +7,6 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -17,26 +16,26 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString
-@Entity
-public class Member {
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO)
-private int memberId;
+public class Appointment {
 
-private boolean dose1status=false;
-
-private boolean dose2status=false;
-
-private LocalDate  dose1date=null;
-
-private LocalDate  dose2date=null;
-
-
-
-@OneToOne(cascade = CascadeType.ALL)
-private IdCard idCard;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private Integer bookingId;
+	
+	private String mobileNo;
+	
+	private LocalDate dateOfBooking = LocalDate.now();
+	
+	private String slot;
+	
+	private Boolean bookingStatus;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Member member;
 }
