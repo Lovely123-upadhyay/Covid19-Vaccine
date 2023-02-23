@@ -15,6 +15,8 @@ public interface VaccineRegistrationService {
 
 	public VaccineRegistration getVaccineRegistrationByMobNo ( String mobileno ) throws VaccineRegistrationException;
 	
+	public List<VaccineRegistration> getAllVaccineRegistrations() throws VaccineRegistrationException;
+	
 	public List<Member> getAllMembersByMobNo ( String mobileno ) throws VaccineRegistrationException ;
 	
 	public VaccineRegistration updateVaccineRegistration( VaccineRegistration vcr ) throws VaccineRegistrationException ;
