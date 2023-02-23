@@ -38,6 +38,32 @@ public class GlobalExceptionHandler {
 	
 	//2nd Any Exception Handler
 	
+	@ExceptionHandler(VaccineRegistrationException.class)
+	public ResponseEntity<MyErrorDetails> VaccineRegistrationExcHandler( VaccineRegistrationException ce , WebRequest wr ){
+		
+		System.out.println("Inside VaccineRegistrationExcHandler method of GlobalExceptionHandler class");
+		
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMsg(ce.getMessage());
+		err.setDetails(wr.getDescription(false));
+		
+		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(AppointmentException.class)
+	public ResponseEntity<MyErrorDetails> AppointmentExceptionExcHandler( AppointmentException ce , WebRequest wr ){
+		
+		System.out.println("Inside AppointmentExceptionExcHandler method of GlobalExceptionHandler class");
+		
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMsg(ce.getMessage());
+		err.setDetails(wr.getDescription(false));
+		
+		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
+	}
+	
 	@ExceptionHandler(Exception.class)
 	public ResponseEntity<MyErrorDetails> anyExcHandler( Exception e, WebRequest wr ){
 		
