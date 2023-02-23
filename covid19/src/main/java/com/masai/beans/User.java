@@ -7,6 +7,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 
@@ -15,11 +16,11 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-//@Entity
+@Entity
 @Data
-//@NoArgsConstructor
-//@AllArgsConstructor
-//@ToString
+@NoArgsConstructor
+@AllArgsConstructor
+@ToString
 public class User {
 
 	@Id
@@ -50,8 +51,8 @@ public class User {
 //    @NotNull @Pattern(regexp = "[0-9]{12}",message = "Aadhar  number should be of 12 digits")
 	private String aadharNo;
 	
-//	@Embedded
+	@Embedded
 //	@NotNull(message = "Address can not be null")
-//	private String address;
+	private String address;
 		
 }
