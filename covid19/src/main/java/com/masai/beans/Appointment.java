@@ -38,4 +38,8 @@ public class Appointment {
 	@OneToOne(cascade = CascadeType.ALL)
 	@JsonIgnore
 	private Member member;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
+	private VaccinationCenter vaccinationCenter;
 }
