@@ -15,9 +15,13 @@ public class VaccineRegistration {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private Integer vrid;
+	private Integer regId;
 	
-	private Long mobileno;
+	private String mobileno;
 	
 	private LocalDate dateofregistration;
-}
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Member> members = new ArrayList<>();
+	
+  }

@@ -8,5 +8,6 @@ import com.masai.beans.VaccineRegistration;
 @Repository
 public interface VaccineRegistrationRepository extends JpaRepository<VaccineRegistration, Integer> {
 
-	public VaccineRegistration findByMobileno(Long mobileno);
+	//custom method:
+	public VaccineRegistration findByMobileno(String mobileno);
 }
