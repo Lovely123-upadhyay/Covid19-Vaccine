@@ -9,7 +9,6 @@ import com.masai.beans.Vaccine;
 public interface VaccineServices {
 	public Vaccine addVaccine(Vaccine v);
 	public List<Vaccine> allVaccines();
-	@Query("select * from Vaccine where name=:name")
 	public Vaccine getVaccineByName(String name);
 	public Vaccine getVaccineById(Integer id);
 	public Vaccine updateVaccine(Integer id,Vaccine v);
