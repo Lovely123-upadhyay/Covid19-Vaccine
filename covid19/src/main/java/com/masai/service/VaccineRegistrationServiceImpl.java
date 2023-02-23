@@ -51,6 +51,25 @@ public class VaccineRegistrationServiceImpl implements VaccineRegistrationServic
 			throw new VaccineRegistrationException(" No Vaccine Registration found with this mobile number !");
 		}
 	}
+	
+	@Override
+	public List<VaccineRegistration> getAllVaccineRegistrations() throws VaccineRegistrationException {
+		
+		List<VaccineRegistration> vaccineRegistrations = VccRegRepo.findAll();
+		
+		//first we will check if list is empty or not:
+		if( ! vaccineRegistrations.isEmpty() ) {
+			
+			//if not then we will return it:
+			return vaccineRegistrations;
+		}else {
+			
+			//else throw exception:
+			throw new VaccineRegistrationException(" No Vaccine Registration found !");
+		}
+		
+		
+	}
 
 	@Override
 	public List<Member> getAllMembersByMobNo(String mobileno) throws VaccineRegistrationException {
@@ -127,4 +146,6 @@ public class VaccineRegistrationServiceImpl implements VaccineRegistrationServic
 		}
 		
 	}
+
+	
 }

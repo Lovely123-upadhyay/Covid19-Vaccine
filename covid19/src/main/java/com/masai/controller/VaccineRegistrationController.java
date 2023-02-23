@@ -40,6 +40,14 @@ public class VaccineRegistrationController {
 		return new ResponseEntity<>(savedVaccineRegistration, HttpStatus.OK);
 	}
 	
+	@GetMapping("/registrations")
+	public ResponseEntity<List<VaccineRegistration>> getAllVaccineRegistrationsHandler( ) throws VaccineRegistrationException{
+		
+		List<VaccineRegistration> savedVaccineRegistrations = VccRegService.getAllVaccineRegistrations();
+		
+		return new ResponseEntity<>(savedVaccineRegistrations, HttpStatus.OK);
+	}
+	
 	@GetMapping("/registration/members")
 	public ResponseEntity<List<Member>> getMembersByMobNoHandler( @RequestParam("mobNo") String mobNo ) throws VaccineRegistrationException{
 		
