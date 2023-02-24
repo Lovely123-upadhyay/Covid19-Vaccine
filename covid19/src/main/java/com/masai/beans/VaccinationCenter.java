@@ -30,11 +30,8 @@ public class VaccinationCenter {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private VaccineInventory inventory;
+	
 	@OneToMany
 	@JsonIgnore
 	List<Appointment> appointments = new ArrayList<>();
-	
-//	@OneToMany
-//	@JsonIgnore
-//	List<VaccineInventory> vaccineInventories = new ArrayList<>();
 }
