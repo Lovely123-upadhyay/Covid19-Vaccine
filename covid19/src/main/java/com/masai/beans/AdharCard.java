@@ -29,7 +29,7 @@ public class AdharCard {
 	@Enumerated(EnumType.STRING)
 	private Iris irisscan;
 	
-//	@OneToOne(cascade = CascadeType.ALL,mappedBy = "adharCard")
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "adharCard")
 	@JsonIgnore
 	private IdCard idCard;
 

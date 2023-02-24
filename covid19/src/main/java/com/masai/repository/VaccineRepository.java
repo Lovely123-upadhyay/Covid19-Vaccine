@@ -12,6 +12,7 @@ import com.masai.exception.VaccineException;
 
 @Repository
 public interface VaccineRepository extends JpaRepository<Vaccine, Integer>{
-	@Query("select * from Vaccine where name=:name")
+	
+	@Query("from Vaccine where name=:name")
 	public Vaccine findByName( @Param("name") String name) throws VaccineException;
 }
