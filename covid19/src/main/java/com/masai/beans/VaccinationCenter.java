@@ -24,9 +24,6 @@ public class VaccinationCenter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 
-	private Integer centerCode;
-	private String name;
-
 	private Integer Code;
 	private String centerName;
 
@@ -34,11 +31,8 @@ public class VaccinationCenter {
 	
 	@OneToOne(cascade = CascadeType.ALL)
 	private VaccineInventory inventory;
+	
 	@OneToMany
 	@JsonIgnore
 	List<Appointment> appointments = new ArrayList<>();
-	
-	@OneToOne
-	@JsonIgnore
-	List<VaccineInventory> vaccineInventories = new ArrayList<>();
 }

@@ -78,10 +78,10 @@ public class AppointmentServiceImpl implements AppointmentService {
 							
 							VaccinationCenter vaccinationCenter = opt2.get();
 							
-							List<VaccineInventory> inventories = vaccinationCenter.getVaccineInventories();
+							VaccineInventory inventory = vaccinationCenter.getInventory();
 							
 							//if inventory is not empty
-							if( ! inventories.isEmpty() ) {
+							if( ! inventory.getVaccineCount().isEmpty() ) {
 								
 								//first we will check if member has already taken dose1:
 								if( member.isDose1status() ) {
@@ -99,6 +99,8 @@ public class AppointmentServiceImpl implements AppointmentService {
 								
 								//associated member with appointment:
 								appointment.setMember(member);
+								
+								vaccinationCenter.getAppointments().add(appointment);
 								
 								//saved and returned appointment:
 								return AptRepo.save(appointment);
