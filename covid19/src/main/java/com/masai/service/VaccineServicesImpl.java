@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.beans.Vaccine;
+import com.masai.exception.VaccineException;
 import com.masai.repository.VaccineRepository;
 
 @Service
@@ -25,26 +26,31 @@ public class VaccineServicesImpl implements VaccineServices{
 	}
 
 	@Override
-	public Vaccine getVaccineByName(String name) {
-		return null;
+	public Vaccine getVaccineByName(String name) throws VaccineException {
+		Vaccine v= vaccineRepo.findByName(name);
+		if(v==null) {
+			throw new VaccineException("Sorry: Vaccine Not Found");
+		}else {
+			return v;
+		}
 	}
 
 	@Override
-	public Vaccine getVaccineById(Integer id) {
-		return vaccineRepo.findById(id).orElseThrow(()->new NullPointerException());
+	public Vaccine getVaccineById(Integer id) throws VaccineException {
+		return vaccineRepo.findById(id).orElseThrow(()->new VaccineException("Sorry: Vaccine Not Found"));
 	}
 
 	@Override
-	public Vaccine updateVaccine(Integer id,Vaccine v) {
-		Vaccine vaccine=vaccineRepo.findById(id).orElseThrow(()->new NullPointerException());
+	public Vaccine updateVaccine(Integer id,Vaccine v) throws VaccineException {
+		Vaccine vaccine=vaccineRepo.findById(id).orElseThrow(()->new VaccineException("Sorry: Vaccine Not Found!"));
 		vaccine.setVaccineName(v.getVaccineName());
 		vaccine.setDescription(v.getDescription());
 		return vaccineRepo.save(vaccine);
 	}
 
 	@Override
-	public Boolean deleteVaccine(Integer id) {
-		Vaccine vaccine=vaccineRepo.findById(id).orElseThrow(()->new NullPointerException());
+	public Boolean deleteVaccine(Integer id) throws VaccineException {
+		Vaccine vaccine=vaccineRepo.findById(id).orElseThrow(()->new VaccineException("Sorry: Vaccine Not Found!"));
 		if(vaccine!=null) {
 			vaccineRepo.delete(vaccine);
 			return true;

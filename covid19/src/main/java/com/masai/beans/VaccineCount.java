@@ -15,7 +15,7 @@ import lombok.Data;
 @Data
 public class VaccineCount {
 	
-	@ManyToOne
+	//@OneToOne
 	private Vaccine vaccine;
 	private Integer quantity;
 }

@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.beans.Vaccine;
 import com.masai.beans.VaccineInventory;
+import com.masai.exception.VaccinationCenterException;
+import com.masai.exception.VaccineException;
+import com.masai.exception.VaccineInventoryException;
 import com.masai.service.VaccineInventoryService;
 import com.masai.service.VaccineServices;
 
@@ -32,7 +35,7 @@ public class VaccineInventoryController {
 	}
 	
 	@GetMapping("/getById/{centerID}")
-	public ResponseEntity<VaccineInventory> getVacineInventoryByCenter(@RequestParam Integer centerID){
+	public ResponseEntity<VaccineInventory> getVacineInventoryByCenter(@RequestParam Integer centerID) throws VaccinationCenterException{
 		VaccineInventory inventory=InventoryService.getInventoryByVaccinationCenter(centerID);
 		return new ResponseEntity<>(inventory,HttpStatus.FOUND);
 	}
@@ -43,8 +46,8 @@ public class VaccineInventoryController {
 		return new ResponseEntity<>(list,HttpStatus.FOUND);
 	}
 	
-	@PostMapping("/addVaccineCount")
-	public ResponseEntity<VaccineInventory> addVacccineCount(@RequestParam(value="InId")Integer id,@RequestParam(value="VName")String name,@RequestParam(value="Qty")Integer qty){
+	@PostMapping("/addVaccineCount/{id}/{name}/{qty}")
+	public ResponseEntity<VaccineInventory> addVacccineCount(@RequestParam Integer id,@RequestParam String name,@RequestParam Integer qty) throws VaccineInventoryException, VaccineException{
 		Vaccine v=vaccineService.getVaccineByName(name);
 		VaccineInventory inventory=InventoryService.addVaccineCount(id, v, qty);
 		return new ResponseEntity<>(inventory,HttpStatus.CREATED);

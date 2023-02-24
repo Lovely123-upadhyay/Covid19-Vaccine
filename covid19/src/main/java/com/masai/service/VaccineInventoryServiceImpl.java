@@ -11,6 +11,8 @@ import com.masai.beans.VaccinationCenter;
 import com.masai.beans.Vaccine;
 import com.masai.beans.VaccineCount;
 import com.masai.beans.VaccineInventory;
+import com.masai.exception.VaccinationCenterException;
+import com.masai.exception.VaccineInventoryException;
 import com.masai.repository.VaccinationCenterRepository;
 import com.masai.repository.VaccineInventoryRepository;
 
@@ -29,8 +31,8 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	}
 
 	@Override
-	public VaccineInventory addVaccineCount(Integer inId,Vaccine v,Integer qty) {
-		VaccineInventory inventory=vaccineInventoryRepo.findById(inId).get();
+	public VaccineInventory addVaccineCount(Integer inId,Vaccine v,Integer qty) throws VaccineInventoryException {
+		VaccineInventory inventory=vaccineInventoryRepo.findById(inId).orElseThrow(()-> new VaccineInventoryException("Sorry: Inventory Not Found!"));
 		List<VaccineCount> list=inventory.getVaccineCount();
 		int flag=0;
 		for(VaccineCount i:list) {
@@ -50,8 +52,8 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	}
 
 	@Override
-	public VaccineInventory getInventoryByVaccinationCenter(Integer id) {
-		VaccinationCenter center=vaccinationCenterRepo.findById(id).get();
+	public VaccineInventory getInventoryByVaccinationCenter(Integer id) throws VaccinationCenterException {
+		VaccinationCenter center=vaccinationCenterRepo.findById(id).orElseThrow(()-> new VaccinationCenterException("Sorry: Inventory Not Found!"));
 		return center.getInventory();
 	}
 
