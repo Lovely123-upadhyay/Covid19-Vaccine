@@ -40,14 +40,14 @@ public class MemberController {
 	}
 	
 	@PostMapping("/addmember/{key}")
-	public ResponseEntity<Member> addMember(@Valid @RequestBody Member member,@PathVariable("key") String key) throws LoginException, MemberException, VaccineRegistrationException{
+	public ResponseEntity<Member> addMember(@RequestBody Member member) throws LoginException, MemberException, VaccineRegistrationException{
 
-		return new ResponseEntity<Member>(service.addMember(key, member), HttpStatus.OK);
+		return new ResponseEntity<Member>(service.addMember(member), HttpStatus.OK);
 
 	}
 	
 	@PutMapping("/updatemember/{key}/{idcard}")
-	public ResponseEntity<Member> updateMember(@Valid @RequestBody  MemberUpdateDto MemberUpdateDto,@PathVariable("key") String key,@PathVariable("idcard") int idcardid) throws LoginException, IdCardException, MemberException, VaccineRegistrationException
+	public ResponseEntity<Member> updateMember(@RequestBody  MemberUpdateDto MemberUpdateDto,@PathVariable("key") String key,@PathVariable("idcard") int idcardid) throws LoginException, IdCardException, MemberException, VaccineRegistrationException
 			{
 
 		return new ResponseEntity<Member>(service.updateMember(key,idcardid,MemberUpdateDto), HttpStatus.OK);
@@ -69,7 +69,7 @@ public class MemberController {
 	}
 	
 	@GetMapping("/getUserByPan")
-	public ResponseEntity<Member> getUsearByPan(@RequestParam String panNo) throws MemberException, PanCardException{
+	public ResponseEntity<Member> getUserrByPan(@RequestParam String panNo) throws MemberException, PanCardException{
 		
 		return new ResponseEntity<Member>( service.getMemberByPanNo(panNo), HttpStatus.OK);
 

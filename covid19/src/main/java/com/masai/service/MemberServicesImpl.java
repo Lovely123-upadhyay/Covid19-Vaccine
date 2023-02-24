@@ -88,40 +88,49 @@ public class MemberServicesImpl implements MemberServices{
 	}
 
 	@Override
-	public Member addMember(String key, Member member) throws LoginException, MemberException,VaccineRegistrationException {
-		CurrentUserSession lu = cus.findByUuid(key);
+	public Member addMember(Member member) throws LoginException, MemberException,VaccineRegistrationException {
 		
-		if(lu!=null) {
-			
-		if(lu.getAdmin()==false) {
-			
-			Optional<Member> mem = memRepo.findById(member.getMemberId());
-			
-			Optional<VaccineRegistration> vaccineRegistration = vrepo.findById(lu.getUserId());
-			if(vaccineRegistration.isPresent()) {
-				
-				if(mem.isEmpty()) {
-					
-					VaccineRegistration vr = vaccineRegistration.get();
-					 Member x = member;
-					 vr.getMembers().add(x);
-					 memRepo.save(x);
-					 return x;
-					
-					
-				}
-				else {
-					throw new MemberException("Member already present");
-				}
-			}else {
-				throw new VaccineRegistrationException("No vaccine registration found ");
-			}
-		}else{
-			throw new LoginException("please login first");
+		if(member!=null) {
+			 return memRepo.save(member);
 		}
-		}else {
-			throw new LoginException("please login first");
+		else {
+			throw new MemberException("please provide valid input");
 		}
+		
+		
+//		CurrentUserSession lu = cus.findByUuid(key);
+//		
+//		if(lu!=null) {
+//			
+//		if(lu.getAdmin()==false) {
+//			
+//			Optional<Member> mem = memRepo.findById(member.getMemberId());
+//			
+//			Optional<VaccineRegistration> vaccineRegistration = vrepo.findById(lu.getUserId());
+//			if(vaccineRegistration.isPresent()) {
+//				
+//				if(mem.isEmpty()) {
+//					
+//					VaccineRegistration vr = vaccineRegistration.get();
+//					 Member x = member;
+//					 vr.getMembers().add(x);
+//					 memRepo.save(x);
+//					 return x;
+//					
+//					
+//				}
+//				else {
+//					throw new MemberException("Member already present");
+//				}
+//			}else {
+//				throw new VaccineRegistrationException("No vaccine registration found ");
+//			}
+//		}else{
+//			throw new LoginException("please login first");
+//		}
+//		}else {
+//			throw new LoginException("please login first");
+//		}
 	}
 
 	@Override

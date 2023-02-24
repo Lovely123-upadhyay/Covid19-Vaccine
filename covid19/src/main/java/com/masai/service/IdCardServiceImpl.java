@@ -30,6 +30,8 @@ import net.bytebuddy.utility.RandomString;
 @Service
 public class IdCardServiceImpl implements IdCardService{
 
+	@Autowired
+	private IdCardRepo irepo;
     
     @Autowired
 	private PanCardRepo panRepo;
@@ -47,35 +49,43 @@ public class IdCardServiceImpl implements IdCardService{
 	private VaccineRegistrationRepository vRepo;
 
 	@Override
-	public IdCard addIdCard(String key,IdCard idCard) throws LoginException,IdCardException,MemberException,VaccineRegistrationException {
-		CurrentUserSession lu = cuRepo.findByUuid(key);
-		if(lu!=null) {
-			
-		if(lu.getAdmin()==false) {
-			
-			Optional<VaccineRegistration> vr = vRepo.findById(lu.getUserId());
-			
-			if(vr.isPresent()) {
-				
-					VaccineRegistration vr1 = vr.get();
-					Member mem = new Member();
-					mem.setIdCard(idCard);
-					
-					vr1.getMembers().add(mem);
-					memRepo.save(mem);
-					return idCard;
-				
-			}
-			else {
-				throw new VaccineRegistrationException("Vaccine registration not found ");
-			}
+	public IdCard addIdCard(IdCard idCard) throws LoginException,IdCardException,MemberException,VaccineRegistrationException {
+		if(idCard!=null) {
+			return irepo.save(idCard);
 		}
-		else{
-			throw new LoginException("please login as a admin");
+		else {
+			throw new IdCardException("plese fill valid details");
 		}
-		}else {
-			throw new LoginException("Please login first");
-		}
+		
+		
+//		CurrentUserSession lu = cuRepo.findByUuid(key);
+//		if(lu!=null) {
+//			
+//		if(lu.getAdmin()==false) {
+//			
+//			Optional<VaccineRegistration> vr = vRepo.findById(lu.getUserId());
+//			
+//			if(vr.isPresent()) {
+//				
+//					VaccineRegistration vr1 = vr.get();
+//					Member mem = new Member();
+//					mem.setIdCard(idCard);
+//					
+//					vr1.getMembers().add(mem);
+//					memRepo.save(mem);
+//					return idCard;
+//				
+//			}
+//			else {
+//				throw new VaccineRegistrationException("user not found ");
+//			}
+//		}
+//		else{
+//			throw new LoginException("please login as a admin");
+//		}
+//		}else {
+//			throw new LoginException("Please login first");
+//		}
 	}
 
 	@Override
