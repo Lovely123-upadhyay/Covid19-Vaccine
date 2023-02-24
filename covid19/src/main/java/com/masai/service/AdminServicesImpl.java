@@ -11,8 +11,8 @@ import com.masai.dto.AdminDto;
 import com.masai.dto.CurrentUserSession;
 import com.masai.exception.AdminException;
 import com.masai.exception.LoginException;
-import com.masai.repositery.AdminRepo;
-import com.masai.repositery.CurrentUserSessionRepo;
+import com.masai.repository.AdminRepo;
+import com.masai.repository.CurrentUserSessionRepo;
 
 import net.bytebuddy.utility.RandomString;
 
@@ -56,7 +56,7 @@ public class AdminServicesImpl implements AdminServices{
 		CurrentUserSession loggedInUser = cuRepo.findByUuid(key);
 
 		if (loggedInUser == null) {
-			throw new LoginException("Please provide a valid key to delete Account");
+			throw new LoginException("Please provide a valid key");
 		}
 		Optional<Admin> dto = adminRepo.findById(loggedInUser.getUserId());
 		

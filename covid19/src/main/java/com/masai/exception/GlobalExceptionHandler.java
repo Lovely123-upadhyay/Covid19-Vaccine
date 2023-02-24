@@ -74,4 +74,49 @@ public class GlobalExceptionHandler {
 		
 		return new ResponseEntity<>(err, HttpStatus.BAD_REQUEST);
 	}
+	
+	@ExceptionHandler(AdminException.class)
+	public ResponseEntity<MyErrorDetails> myLoginException(AdminException ie, WebRequest req){
+		
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		
+		err.setMsg(ie.getMessage());
+		err.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(LoginException.class)
+	public ResponseEntity<MyErrorDetails> myAdminException(LoginException ie, WebRequest req){
+		
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMsg(ie.getMessage());
+		err.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(PanCardException.class)
+	public ResponseEntity<MyErrorDetails> pancardException(PanCardException ie, WebRequest req){
+		
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMsg(ie.getMessage());
+		err.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(AdharCardException.class)
+	public ResponseEntity<MyErrorDetails> pancardException(AdharCardException ie, WebRequest req){
+		
+		MyErrorDetails err = new MyErrorDetails();
+		err.setTimeStamp(LocalDateTime.now());
+		err.setMsg(ie.getMessage());
+		err.setDetails(req.getDescription(false));
+		
+		return new ResponseEntity<MyErrorDetails>(err, HttpStatus.BAD_REQUEST);
+	}
 }

@@ -28,53 +28,42 @@ import java.util.List;
 public class AdminController {
 	
 	@Autowired
-	private AdminServices adminService;
+	private AdminServices ser;
 	
 	
-	@PostMapping("/adminsignup")
-	public ResponseEntity<Admin> registerAdminHandler(@RequestBody Admin user) throws AdminException {
+	@PostMapping("/adminSignUp")
+	public ResponseEntity<Admin> registerAdmin(@RequestBody Admin user) throws AdminException {
 
-		Admin savedUser = adminService.saveAdmin(user);
-
-		return new ResponseEntity<Admin>(savedUser, HttpStatus.OK);
+		return new ResponseEntity<Admin>(ser.saveAdmin(user), HttpStatus.OK);
 
 	}
     
 	@PutMapping("/admins")
-	public ResponseEntity<Admin> updateAdminHandler(@RequestBody Admin user, @RequestParam("key") String key)
+	public ResponseEntity<Admin> updateAdmin(@RequestBody Admin user, @RequestParam("key") String key)
 			throws AdminException, LoginException {
 
-		Admin updatedUser = adminService.updateAdmin(user, key);
-
-		return new ResponseEntity<Admin>(updatedUser, HttpStatus.OK);
+		return new ResponseEntity<Admin>(ser.updateAdmin(user, key), HttpStatus.OK);
 
 	}
     
 	@DeleteMapping("/admins/{key}")
-	public ResponseEntity<String> deleteAdminHandler(@PathVariable("key") String key)
-			throws AdminException, LoginException {
+	public ResponseEntity<String> deleteAdmin(@PathVariable("key") String key)throws AdminException, LoginException {
 
-		String updatedUser = adminService.deleteAdmin(key);
-
-		return new ResponseEntity<String>(updatedUser, HttpStatus.OK);
+		return new ResponseEntity<String>(ser.deleteAdmin(key), HttpStatus.OK);
 
 	}
     
 	@PostMapping("/adminLogin")
-	public ResponseEntity<CurrentUserSession> loginAdminHandler(@RequestBody AdminDto admin) throws LoginException {
+	public ResponseEntity<CurrentUserSession> loginAdmin(@RequestBody AdminDto admin) throws LoginException {
 
-		CurrentUserSession res = adminService.loginAdmin(admin);
-
-		return new ResponseEntity<CurrentUserSession>(res, HttpStatus.OK);
+		return new ResponseEntity<CurrentUserSession>(ser.loginAdmin(admin), HttpStatus.OK);
 
 	}
     
 	@PostMapping("/adminLogout/{key}")
-	public ResponseEntity<String> logoutAdminHandler(@PathVariable("key") String key) throws LoginException {
+	public ResponseEntity<String> logoutAdmin(@PathVariable("key") String key) throws LoginException {
 
-		String res = adminService.logoutAdmin(key);
-
-		return new ResponseEntity<String>(res, HttpStatus.OK);
+		return new ResponseEntity<String>(ser.logoutAdmin(key), HttpStatus.OK);
 
 	}
 }

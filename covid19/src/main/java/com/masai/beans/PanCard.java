@@ -29,7 +29,7 @@ public class PanCard {
 	@Column(unique = true)
 	private String panoNo;
 	
-//	@OneToOne(cascade = CascadeType.ALL,mappedBy = "panCard")
+	@OneToOne(cascade = CascadeType.ALL,mappedBy = "panCard")
 	@JsonIgnore
 	private IdCard idCard;
 }
