@@ -11,4 +11,5 @@ public class MyErrorDetails {
 	private String msg;
 	private String details;
 	
+	
 }
