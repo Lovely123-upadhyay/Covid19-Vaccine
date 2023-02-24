@@ -17,7 +17,7 @@ public interface MemberServices {
     
     public Member getMemberByPanNo(String panNo) throws MemberException,PanCardException;
     
-    public Member addMember(String key,Member member) throws LoginException,MemberException,VaccineRegistrationException;
+    public Member addMember(Member member) throws LoginException,MemberException,VaccineRegistrationException;
     
     public Member updateMember(String key,int idcardid,MemberUpdateDto MemberUpdateDto) throws LoginException,IdCardException,MemberException,VaccineRegistrationException;
     

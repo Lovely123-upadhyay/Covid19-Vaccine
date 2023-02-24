@@ -32,9 +32,9 @@ public class IdCardController {
 	
 	
 	@PostMapping("/userSignUp/{key}")
-	public ResponseEntity<IdCard> registerIdCard(@Valid @RequestBody IdCard user,@PathVariable("key") String key) throws IdCardException, LoginException, MemberException, VaccineRegistrationException {
+	public ResponseEntity<IdCard> registerIdCard(@RequestBody IdCard user) throws IdCardException, LoginException, MemberException, VaccineRegistrationException {
 
-		return new ResponseEntity<IdCard>(ser.addIdCard(key, user), HttpStatus.OK);
+		return new ResponseEntity<IdCard>(ser.addIdCard(user), HttpStatus.OK);
 
 	}
 	
