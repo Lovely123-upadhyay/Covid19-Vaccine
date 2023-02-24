@@ -19,6 +19,6 @@ public class VaccineInventory {
 	private Integer inventoryId;
 	private LocalDateTime dateTime;
 	
-	@Embedded
+	@OneToMany
 	private List<VaccineCount> vaccineCount;
 }
