@@ -4,19 +4,21 @@ import java.util.List;
 
 import com.masai.beans.Appointment;
 import com.masai.exception.AppointmentException;
+import com.masai.exception.LoginException;
 import com.masai.exception.MemberException;
 import com.masai.exception.VaccinationCenterException;
 import com.masai.exception.VaccineRegistrationException;
+import com.wincovid.exception.VaccineInventoryException;
 
 public interface AppointmentService {
 
-	public Appointment addAppointment( Appointment appointment, Integer mid, Integer centerCode ) throws AppointmentException, MemberException, VaccinationCenterException, VaccineRegistrationException ;
+	public Appointment addAppointment( String key, Appointment appointment, String aadharNo, Integer centerCode ) throws LoginException, AppointmentException, MemberException, VaccinationCenterException, VaccineRegistrationException ,VaccineInventoryException;
 	
-	public Appointment getAppointment( Integer bookingId ) throws AppointmentException;
+	public Appointment getAppointment( String key, String aadharNo ) throws AppointmentException , LoginException;
 	
-	public List<Appointment> getAllAppointments() throws AppointmentException;
+	public List<Appointment> getAllAppointments( String key ) throws AppointmentException , LoginException;
 	
-	public Appointment updateAppointment( Appointment appointment ) throws AppointmentException;
+	public Appointment updateAppointment( String key, String aadharNo , Appointment appointment ) throws AppointmentException , LoginException;
 	
-	public Boolean deleteAppointment( Integer id ) throws AppointmentException;
+	public Boolean deleteAppointment( String key, String aadharNo ) throws AppointmentException , LoginException;
 }

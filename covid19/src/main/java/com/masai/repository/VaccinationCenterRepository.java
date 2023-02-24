@@ -8,6 +8,4 @@ import com.masai.beans.VaccinationCenter;
 
 public interface VaccinationCenterRepository extends JpaRepository<VaccinationCenter, Integer>{
 
-public interface VaccinationCenterRepository extends JpaRepository<VaccinationCenter, Integer> {
-
 }

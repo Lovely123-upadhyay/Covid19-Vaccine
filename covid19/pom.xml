@@ -77,6 +77,11 @@
     <version>3.0.2</version><!--$NO-MVN-MAN-VER$-->
 </dependency>
 
+		<dependency>
+			<groupId>com.wincovid</groupId>
+			<artifactId>Win_covid</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
+		</dependency>
 	</dependencies>
 
 	<build>

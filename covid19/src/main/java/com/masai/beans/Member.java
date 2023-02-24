@@ -47,5 +47,9 @@ private Vaccine vaccine;
 @OneToOne(cascade = CascadeType.ALL)
 private IdCard idCard;
 
+@OneToOne(cascade = CascadeType.ALL)
+@JsonIgnore
+private VaccineRegistration vaccineRegistration;
+
 
 }

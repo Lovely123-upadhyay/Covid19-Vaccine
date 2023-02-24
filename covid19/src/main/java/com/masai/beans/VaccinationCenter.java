@@ -38,7 +38,7 @@ public class VaccinationCenter {
 	@JsonIgnore
 	List<Appointment> appointments = new ArrayList<>();
 	
-	@OneToMany
+	@OneToOne
 	@JsonIgnore
 	List<VaccineInventory> vaccineInventories = new ArrayList<>();
 }
