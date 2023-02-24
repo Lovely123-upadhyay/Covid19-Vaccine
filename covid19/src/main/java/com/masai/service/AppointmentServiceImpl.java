@@ -16,6 +16,7 @@ import com.masai.exception.AppointmentException;
 import com.masai.exception.LoginException;
 import com.masai.exception.MemberException;
 import com.masai.exception.VaccinationCenterException;
+import com.masai.exception.VaccineInventoryException;
 import com.masai.exception.VaccineRegistrationException;
 import com.masai.repository.MemberRepo;
 import com.masai.repository.AppointmentRepository;
@@ -23,7 +24,6 @@ import com.masai.repository.CurrentUserSessionRepo;
 import com.masai.repository.VaccinationCenterRepository;
 import com.masai.repository.VaccineInventoryRepository;
 import com.masai.repository.VaccineRegistrationRepository;
-import com.wincovid.exception.VaccineInventoryException;
 
 @Service
 public class AppointmentServiceImpl implements AppointmentService { 

@@ -20,7 +20,6 @@ import com.masai.exception.MemberException;
 import com.masai.exception.VaccinationCenterException;
 import com.masai.exception.VaccineRegistrationException;
 import com.masai.service.AppointmentService;
-import com.wincovid.exception.VaccineInventoryException;
 
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
@@ -32,7 +31,7 @@ public class AppointmentController {
 	private AppointmentService appointmentService;
 	
 	@PostMapping("/bookAppointment")
-	public ResponseEntity<Appointment> addNewAppoinmentHandler( @RequestParam("key") String key, @RequestParam("aadharNo") String aadharNo, @RequestParam("centerCode") Integer centerCode , @RequestBody Appointment appointment) throws LoginException, AppointmentException, MemberException, VaccinationCenterException, VaccineRegistrationException, VaccineInventoryException{
+	public ResponseEntity<Appointment> addNewAppoinmentHandler( @RequestParam("key") String key, @RequestParam("aadharNo") String aadharNo, @RequestParam("centerCode") Integer centerCode , @RequestBody Appointment appointment) throws LoginException, AppointmentException, MemberException, VaccinationCenterException, VaccineRegistrationException, com.masai.exception.VaccineInventoryException{
 		
 		Appointment savedAppointment = appointmentService.addAppointment(key, appointment, aadharNo, centerCode);
 		
