@@ -30,6 +30,7 @@ public class VaccinationCenter {
 	private String address;
 	
 	@OneToOne(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private VaccineInventory inventory;
 	
 	@OneToMany

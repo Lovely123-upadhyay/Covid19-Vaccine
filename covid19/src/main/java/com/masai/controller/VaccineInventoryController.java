@@ -1,6 +1,6 @@
 package com.masai.controller;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,8 +42,8 @@ public class VaccineInventoryController {
 	}
 	
 	@GetMapping("/getByDate/{date}")
-	public ResponseEntity<List<VaccineInventory>> getInventoriesByDate(@RequestParam("key") String key,@RequestParam LocalDateTime date) throws LoginException{
-		List<VaccineInventory> list=InventoryService.getInventoryByDate(key, date);
+	public ResponseEntity<List<VaccineInventory>> getInventoriesByDate(@RequestParam("key") String key,@RequestParam String date) throws LoginException{
+		List<VaccineInventory> list=InventoryService.getInventoryByDate(key, LocalDate.parse(date));
 		return new ResponseEntity<>(list,HttpStatus.FOUND);
 	}
 	

@@ -76,10 +76,9 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	}
 
 	@Override
-	public List<VaccineInventory> getInventoryByDate(String key,LocalDateTime date) throws LoginException {
+	public List<VaccineInventory> getInventoryByDate(String key,LocalDate date) throws LoginException {
 		if(SessRepo.findByUuid(key)!=null) {
-//			return vaccineInventoryRepo.findByDate(date);
-			return null;
+			return vaccineInventoryRepo.findByDate(date);
 		}else {
 			throw new LoginException("Please login as admin first !");
 		}

@@ -1,5 +1,6 @@
 package com.masai.service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,6 +14,6 @@ public interface VaccineInventoryService {
 	public List<VaccineInventory> getAllVaccineInventories(String key) throws LoginException;
 	public VaccineInventory getInventoryByVaccinationCenter(String key,Integer id) throws LoginException,VaccinationCenterException;
 	public VaccineInventory addVaccineCount(String key,Integer inId,Vaccine v,Integer qty) throws LoginException,VaccineInventoryException; 
-	public List<VaccineInventory> getInventoryByDate(String key,LocalDateTime date)throws LoginException;
+	public List<VaccineInventory> getInventoryByDate(String key,LocalDate date)throws LoginException;
 //	public List<VaccineInventory> getInventoryByVaccine(Vaccine v);
 }

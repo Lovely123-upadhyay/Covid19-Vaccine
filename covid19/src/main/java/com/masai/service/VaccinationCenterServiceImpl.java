@@ -7,11 +7,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.masai.beans.VaccinationCenter;
+import com.masai.beans.VaccineCount;
+import com.masai.beans.VaccineInventory;
 import com.masai.dto.CurrentUserSession;
 import com.masai.exception.LoginException;
 import com.masai.exception.VaccinationCenterException;
 import com.masai.repository.CurrentUserSessionRepo;
 import com.masai.repository.VaccinationCenterRepository;
+import com.masai.repository.VaccineInventoryRepository;
 
 @Service
 public class VaccinationCenterServiceImpl implements VaccinationCenterService{
@@ -21,6 +24,8 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 	
 	@Autowired
 	private VaccinationCenterRepository vaccineCenterRepo;
+	
+	private VaccineInventoryRepository inventoryRepo; 
 
 	@Override
 	public VaccinationCenter addNewVaccinationCenter(String key, VaccinationCenter center) throws LoginException, VaccinationCenterException {
@@ -33,7 +38,9 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 			
 			//if user is admin or member
 			if( cus.getAdmin() ) {
-				
+				VaccineInventory inventory=new VaccineInventory();
+				//VaccineCount count=new VaccineCount();
+				center.setInventory(inventoryRepo.save(inventory));
 				return vaccineCenterRepo.save(center);
 				
 			}else {
