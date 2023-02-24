@@ -23,12 +23,8 @@ import lombok.NoArgsConstructor;
 public class VaccinationCenter {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-
 	private Integer centerCode;
 	private String name;
-
-	private Integer Code;
-	private String centerName;
 
 	private String address;
 	
@@ -38,7 +34,7 @@ public class VaccinationCenter {
 	@JsonIgnore
 	List<Appointment> appointments = new ArrayList<>();
 	
-	@OneToMany
-	@JsonIgnore
-	List<VaccineInventory> vaccineInventories = new ArrayList<>();
+//	@OneToMany
+//	@JsonIgnore
+//	List<VaccineInventory> vaccineInventories = new ArrayList<>();
 }
