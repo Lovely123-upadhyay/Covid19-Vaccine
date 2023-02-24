@@ -23,7 +23,7 @@ import com.masai.exception.VaccineRegistrationException;
 import com.masai.service.IdCardService;
 
 @RestController
-@RequestMapping("/usearController")
+@RequestMapping("/userController")
 public class IdCardController {
 	
 	@Autowired
