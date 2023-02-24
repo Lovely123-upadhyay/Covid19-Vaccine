@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.masai.beans.Vaccine;
 import com.masai.beans.VaccineInventory;
+import com.masai.exception.LoginException;
 import com.masai.exception.VaccinationCenterException;
 import com.masai.exception.VaccineException;
 import com.masai.exception.VaccineInventoryException;
@@ -29,27 +30,27 @@ public class VaccineInventoryController {
 	private VaccineServices vaccineService;
 	
 	@GetMapping("/getAll")
-	public ResponseEntity<List<VaccineInventory>> getAllInventories(){
-		List<VaccineInventory> list=InventoryService.getAllVaccineInventories();
+	public ResponseEntity<List<VaccineInventory>> getAllInventories(@RequestParam("key") String key) throws LoginException{
+		List<VaccineInventory> list=InventoryService.getAllVaccineInventories(key);
 		return new ResponseEntity<>(list,HttpStatus.FOUND);
 	}
 	
 	@GetMapping("/getById/{centerID}")
-	public ResponseEntity<VaccineInventory> getVacineInventoryByCenter(@RequestParam Integer centerID) throws VaccinationCenterException{
-		VaccineInventory inventory=InventoryService.getInventoryByVaccinationCenter(centerID);
+	public ResponseEntity<VaccineInventory> getVacineInventoryByCenter(@RequestParam("key") String key,@RequestParam Integer centerID) throws VaccinationCenterException, LoginException{
+		VaccineInventory inventory=InventoryService.getInventoryByVaccinationCenter(key, centerID);
 		return new ResponseEntity<>(inventory,HttpStatus.FOUND);
 	}
 	
 	@GetMapping("/getByDate/{date}")
-	public ResponseEntity<List<VaccineInventory>> getInventoriesByDate(@RequestParam LocalDateTime date){
-		List<VaccineInventory> list=InventoryService.getInventoryByDate(date);
+	public ResponseEntity<List<VaccineInventory>> getInventoriesByDate(@RequestParam("key") String key,@RequestParam LocalDateTime date) throws LoginException{
+		List<VaccineInventory> list=InventoryService.getInventoryByDate(key, date);
 		return new ResponseEntity<>(list,HttpStatus.FOUND);
 	}
 	
 	@PostMapping("/addVaccineCount/{id}/{name}/{qty}")
-	public ResponseEntity<VaccineInventory> addVacccineCount(@RequestParam Integer id,@RequestParam String name,@RequestParam Integer qty) throws VaccineInventoryException, VaccineException{
-		Vaccine v=vaccineService.getVaccineByName(name);
-		VaccineInventory inventory=InventoryService.addVaccineCount(id, v, qty);
+	public ResponseEntity<VaccineInventory> addVacccineCount(@RequestParam("key") String key,@RequestParam Integer id,@RequestParam String name,@RequestParam Integer qty) throws VaccineInventoryException, VaccineException, LoginException{
+		Vaccine v=vaccineService.getVaccineByName(key, name);
+		VaccineInventory inventory=InventoryService.addVaccineCount(key, id, v, qty);
 		return new ResponseEntity<>(inventory,HttpStatus.CREATED);
 	}
 	
