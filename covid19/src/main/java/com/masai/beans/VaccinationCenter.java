@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.validation.constraints.NotNull;
 import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -30,7 +31,7 @@ public class VaccinationCenter {
 	private String address;
 	
 	@OneToOne(cascade = CascadeType.ALL)
-	@JsonIgnore
+	@NotNull
 	private VaccineInventory inventory;
 	
 	@OneToMany

@@ -1,5 +1,7 @@
 package com.masai.service;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,9 +40,6 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 			
 			//if user is admin or member
 			if( cus.getAdmin() ) {
-				VaccineInventory inventory=new VaccineInventory();
-				//VaccineCount count=new VaccineCount();
-				center.setInventory(inventoryRepo.save(inventory));
 				return vaccineCenterRepo.save(center);
 				
 			}else {
