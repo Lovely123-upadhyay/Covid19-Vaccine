@@ -18,10 +18,9 @@ import com.masai.exception.AppointmentException;
 import com.masai.exception.LoginException;
 import com.masai.exception.MemberException;
 import com.masai.exception.VaccinationCenterException;
+import com.masai.exception.VaccineInventoryException;
 import com.masai.exception.VaccineRegistrationException;
 import com.masai.service.AppointmentService;
-import com.wincovid.exception.VaccineInventoryException;
-
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 
 @RestController

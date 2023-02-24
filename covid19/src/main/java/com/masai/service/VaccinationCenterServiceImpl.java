@@ -115,7 +115,7 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 			//if user is admin or member
 			if( cus.getAdmin() ) {
 				
-				Optional<VaccinationCenter> opt = vaccineCenterRepo.findById(center.getCode());
+				Optional<VaccinationCenter> opt = vaccineCenterRepo.findById(center.getCenterCode());
 				
 				if( opt.isPresent() ) {
 					
@@ -123,7 +123,7 @@ public class VaccinationCenterServiceImpl implements VaccinationCenterService{
 					
 					savedCenter.setAddress(center.getAddress());
 					savedCenter.setAppointments(center.getAppointments());
-					savedCenter.setCenterName(center.getCenterName());
+					savedCenter.setName(center.getName());
 					savedCenter.setInventory(center.getInventory());
 					
 					return vaccineCenterRepo.save(savedCenter);
