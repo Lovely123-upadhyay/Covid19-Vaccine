@@ -8,7 +8,7 @@ import com.masai.exception.LoginException;
 import com.masai.exception.MemberException;
 import com.masai.exception.VaccinationCenterException;
 import com.masai.exception.VaccineRegistrationException;
-import com.wincovid.exception.VaccineInventoryException;
+import com.masai.exception.VaccineInventoryException;
 
 public interface AppointmentService {
 
