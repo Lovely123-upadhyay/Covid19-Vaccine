@@ -76,6 +76,10 @@
     <artifactId>spring-boot-starter-validation</artifactId>
     <version>3.0.2</version><!--$NO-MVN-MAN-VER$-->
 </dependency>
+<<<<<<< HEAD
+=======
+		
+>>>>>>> ac2fffe39f379a26415955941bc6c0c71489e81c
 	</dependencies>
 
 	<build>

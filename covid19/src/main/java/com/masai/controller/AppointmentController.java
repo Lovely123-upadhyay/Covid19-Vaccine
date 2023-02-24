@@ -31,7 +31,7 @@ public class AppointmentController {
 	private AppointmentService appointmentService;
 	
 	@PostMapping("/bookAppointment")
-	public ResponseEntity<Appointment> addNewAppoinmentHandler( @RequestParam("key") String key, @RequestParam("aadharNo") String aadharNo, @RequestParam("centerCode") Integer centerCode , @RequestBody Appointment appointment) throws LoginException, AppointmentException, MemberException, VaccinationCenterException, VaccineRegistrationException, VaccineInventoryException{
+	public ResponseEntity<Appointment> addNewAppoinmentHandler( @RequestParam("key") String key, @RequestParam("aadharNo") String aadharNo, @RequestParam("centerCode") Integer centerCode , @RequestBody Appointment appointment) throws LoginException, AppointmentException, MemberException, VaccinationCenterException, VaccineRegistrationException, com.masai.exception.VaccineInventoryException{
 		
 		Appointment savedAppointment = appointmentService.addAppointment(key, appointment, aadharNo, centerCode);
 		
