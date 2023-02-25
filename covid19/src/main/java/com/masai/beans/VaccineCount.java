@@ -27,9 +27,4 @@ public class VaccineCount {
 	private VaccineInventory inventory;
 	
 	private Integer quantity;
-
-	@Override
-	public String toString() {
-		return "VaccineCount [countid=" + countid + ", vaccine=" + vaccine + ", quantity=" + quantity + "]";
-	}
 }

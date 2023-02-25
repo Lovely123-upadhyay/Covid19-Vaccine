@@ -52,18 +52,26 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 			List<VaccineCount> found=countRepo.findByInventory(inventory).stream().filter(count->count.getVaccine().equals(v)).collect(Collectors.toList());
 			if(found.size()==0) {
 				VaccineCount c=new VaccineCount();
+				System.out.println(11);
 				c.setVaccine(v);
 				c.setQuantity(qty);
 				c.setInventory(inventory);
+				System.out.println(111);
 				VaccineCount saved=countRepo.save(c);
-				inventory.getVaccineCount().add(saved);
-				VaccineInventory savedInventory=vaccineInventoryRepo.save(inventory);
+				System.out.println(1111);
+				System.out.println(saved.toString());
+				VaccineInventory Isaved=vaccineInventoryRepo.save(inventory);
+				System.out.println(Isaved.toString());
 				return saved;
+				
 			}else{
 				found.get(0).setQuantity(found.get(0).getQuantity()+qty);
+				System.out.println(1);
 				VaccineCount saved=countRepo.save(found.get(0));
-				inventory.getVaccineCount().add(saved);
-				VaccineInventory savedInventory=vaccineInventoryRepo.save(inventory);
+				System.out.println(2);
+				System.out.println(saved.toString());
+				VaccineInventory Isaved=vaccineInventoryRepo.save(inventory);
+				System.out.println(Isaved.toString());
 				return saved;
 			}
 			

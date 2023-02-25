@@ -28,12 +28,9 @@ public class VaccineInventory {
 	private Integer inventoryId;
 	private LocalDate date;
 	
-//	@OneToOne(mappedBy = "centerCode")
-//	private VaccinationCenter center;
-	
 	@OneToMany(cascade = CascadeType.ALL)
-	//@JsonIgnore
-	@NotNull
-	private Set<VaccineCount> vaccineCount=new HashSet<VaccineCount>();
+	@JsonIgnore
+	//@NotNull
+	private Set<VaccineCount> vaccineCount;
 	
 }
