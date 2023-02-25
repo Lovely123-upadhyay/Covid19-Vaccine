@@ -16,7 +16,7 @@ public interface VaccineInventoryService {
 	public VaccineInventory addInventory(String key,VaccineInventory inventory)throws LoginException,VaccinationCenterException;
 	public List<VaccineInventory> getAllVaccineInventories(String key) throws LoginException;
 	public VaccineInventory getInventoryByVaccinationCenter(String key,Integer id) throws LoginException,VaccinationCenterException;
-	public Set<VaccineCount> addVaccineCount(String key,Integer inId,Vaccine v,Integer qty) throws LoginException,VaccineInventoryException; 
+	public VaccineCount addVaccineCount(String key,Integer inId,Vaccine v,Integer qty) throws LoginException,VaccineInventoryException; 
 	public List<VaccineInventory> getInventoryByDate(String key,LocalDate date)throws LoginException;
 //	public List<VaccineInventory> getInventoryByVaccine(Vaccine v);
 }

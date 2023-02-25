@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,23 +46,27 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	}
 
 	@Override
-	public Set<VaccineCount> addVaccineCount(String key,Integer inId,Vaccine v,Integer qty) throws VaccineInventoryException, LoginException {
+	public VaccineCount addVaccineCount(String key,Integer inId,Vaccine v,Integer qty) throws VaccineInventoryException, LoginException {
 		if(SessRepo.findByUuid(key)!=null) {
 			VaccineInventory inventory=vaccineInventoryRepo.findById(inId).orElseThrow(()-> new VaccineInventoryException("Sorry: Inventory Not Found!"));
-			VaccineCount found=countRepo.findByVaccine(v);
-			if(found==null || !found.getVaccine().equals(v)) {
+			List<VaccineCount> found=countRepo.findByInventory(inventory).stream().filter(count->count.getVaccine().equals(v)).collect(Collectors.toList());
+			if(found.size()==0) {
 				VaccineCount c=new VaccineCount();
 				c.setVaccine(v);
 				c.setQuantity(qty);
+				c.setInventory(inventory);
 				VaccineCount saved=countRepo.save(c);
 				inventory.getVaccineCount().add(saved);
-			}else if(found.getVaccine().equals(v)){
-				found.setQuantity(found.getQuantity()+qty);
-				VaccineCount saved=countRepo.save(found);
+				VaccineInventory savedInventory=vaccineInventoryRepo.save(inventory);
+				return saved;
+			}else{
+				found.get(0).setQuantity(found.get(0).getQuantity()+qty);
+				VaccineCount saved=countRepo.save(found.get(0));
 				inventory.getVaccineCount().add(saved);
+				VaccineInventory savedInventory=vaccineInventoryRepo.save(inventory);
+				return saved;
 			}
-			VaccineInventory savedInventory=vaccineInventoryRepo.save(inventory);
-			return savedInventory.getVaccineCount();
+			
 		}else {
 			throw new LoginException("Please login as admin first !");
 		}

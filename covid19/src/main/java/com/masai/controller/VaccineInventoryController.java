@@ -1,7 +1,9 @@
 package com.masai.controller;
 
 import java.time.LocalDate;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,14 +39,15 @@ public class VaccineInventoryController {
 	@Autowired
 	private VaccinationCenterService centerService;
 	
-	@PostMapping("AddInventory")
-	public ResponseEntity<VaccineInventory> addNewInventory(@RequestParam("key") String key,@RequestBody VaccineInventory i) throws LoginException, VaccinationCenterException{
-		VaccineInventory saved=InventoryService.addInventory(key, i);
-		return new ResponseEntity<>(saved,HttpStatus.CREATED);
-	}
+//	@PostMapping("AddInventory")
+//	public ResponseEntity<VaccineInventory> addNewInventory(@RequestParam("key") String key,@RequestBody VaccineInventory i) throws LoginException, VaccinationCenterException{
+//		VaccineInventory saved=InventoryService.addInventory(key, i);
+//		return new ResponseEntity<>(saved,HttpStatus.CREATED);
+//	}
 	
 	@GetMapping("/getAll")
 	public ResponseEntity<List<VaccineInventory>> getAllInventories(@RequestParam("key") String key) throws LoginException{
+//		Map<VaccineInventory,List<VaccineCount>> map=new HashMap<>();
 		List<VaccineInventory> list=InventoryService.getAllVaccineInventories(key);
 		return new ResponseEntity<>(list,HttpStatus.FOUND);
 	}
@@ -62,10 +65,10 @@ public class VaccineInventoryController {
 	}
 	
 	@PostMapping("/addVaccineCount/{CenterId}/{vaccineName}/{quantity}")
-	public ResponseEntity<Set<VaccineCount>> addVacccineCount(@RequestParam("key") String key,@RequestParam Integer CenterId,@RequestParam String vaccineName ,@RequestParam Integer quantity) throws VaccineInventoryException, VaccineException, LoginException, VaccinationCenterException{
+	public ResponseEntity<VaccineCount> addVacccineCount(@RequestParam("key") String key,@RequestParam Integer CenterId,@RequestParam String vaccineName ,@RequestParam Integer quantity) throws VaccineInventoryException, VaccineException, LoginException, VaccinationCenterException{
 		Vaccine v=vaccineService.getVaccineByName(key, vaccineName);
 		VaccinationCenter c=centerService.getVaccinationCenterById(key, CenterId);
-		Set<VaccineCount> count=InventoryService.addVaccineCount(key, c.getInventory().getInventoryId(), v, quantity);
+		VaccineCount count=InventoryService.addVaccineCount(key, c.getInventory().getInventoryId(), v, quantity);
 		return new ResponseEntity<>(count,HttpStatus.CREATED);
 	}
 	

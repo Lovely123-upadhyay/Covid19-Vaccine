@@ -32,7 +32,8 @@ public class VaccineInventory {
 //	private VaccinationCenter center;
 	
 	@OneToMany(cascade = CascadeType.ALL)
-	@JsonIgnore
+	//@JsonIgnore
 	@NotNull
 	private Set<VaccineCount> vaccineCount=new HashSet<VaccineCount>();
+	
 }

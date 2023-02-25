@@ -20,8 +20,4 @@ public class Vaccine {
 	private String vaccineName;
 	private String description;
 	private Integer price;
-	
-	@OneToOne
-	@JsonIgnore
-	private VaccineCount vaccinecount;
 }
