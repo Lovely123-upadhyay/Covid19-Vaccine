@@ -48,13 +48,16 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 	public Set<VaccineCount> addVaccineCount(String key,Integer inId,Vaccine v,Integer qty) throws VaccineInventoryException, LoginException {
 		if(SessRepo.findByUuid(key)!=null) {
 			VaccineInventory inventory=vaccineInventoryRepo.findById(inId).orElseThrow(()-> new VaccineInventoryException("Sorry: Inventory Not Found!"));
-			if(inventory.getVaccineCount().contains(v)) {
-				
-			}else {
+			VaccineCount found=countRepo.findByVaccine(v);
+			if(found==null || !found.getVaccine().equals(v)) {
 				VaccineCount c=new VaccineCount();
 				c.setVaccine(v);
 				c.setQuantity(qty);
 				VaccineCount saved=countRepo.save(c);
+				inventory.getVaccineCount().add(saved);
+			}else if(found.getVaccine().equals(v)){
+				found.setQuantity(found.getQuantity()+qty);
+				VaccineCount saved=countRepo.save(found);
 				inventory.getVaccineCount().add(saved);
 			}
 			VaccineInventory savedInventory=vaccineInventoryRepo.save(inventory);
