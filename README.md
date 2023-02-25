@@ -1,4 +1,4 @@
-<b>REST API for an Covid-19 Application<b>
+REST API for an Covid-19 Application
 
 We have developed this REST API for an Covid-19 Application. This API performs all the fundamental CRUD operations of any Covid-19 Application platform with user validation at every step.
 
