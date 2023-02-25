@@ -11,6 +11,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -26,7 +28,9 @@ public class VaccineRegistration {
 	
 	private LocalDate dateofregistration;
 	
+	
 	@OneToMany(cascade = CascadeType.ALL)
+	@JsonIgnore
 	private List<Member> members = new ArrayList<>();
 	
 }
