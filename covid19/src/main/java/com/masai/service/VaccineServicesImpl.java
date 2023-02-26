@@ -30,9 +30,14 @@ public class VaccineServicesImpl implements VaccineServices{
 	}
 
 	@Override
-	public List<Vaccine> allVaccines(String key) throws LoginException {
+	public List<Vaccine> allVaccines(String key) throws LoginException,VaccineException  {
 		if(SessRepo.findByUuid(key)!=null) {
-			return vaccineRepo.findAll();
+			List<Vaccine> list=vaccineRepo.findAll();
+			if(list.size()!=0) {
+				return list;
+			}else {
+				throw new VaccineException("Sorry: Vaccine Not Found");
+			}
 		}else {
 			throw new LoginException("Please login as admin first !");
 		}

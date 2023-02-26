@@ -52,11 +52,11 @@ public class VaccineInventoryController {
 		return new ResponseEntity<>(list,HttpStatus.FOUND);
 	}
 	
-	@GetMapping("/getById/{centerID}")
-	public ResponseEntity<VaccineInventory> getVacineInventoryByCenter(@RequestParam("key") String key,@RequestParam Integer centerID) throws VaccinationCenterException, LoginException{
-		VaccineInventory inventory=InventoryService.getInventoryByVaccinationCenter(key, centerID);
-		return new ResponseEntity<>(inventory,HttpStatus.FOUND);
-	}
+//	@GetMapping("/getById/{centerID}")
+//	public ResponseEntity<VaccineInventory> getVacineInventoryByCenter(@RequestParam("key") String key,@RequestParam Integer centerID) throws VaccinationCenterException, LoginException{
+//		VaccineInventory inventory=InventoryService.getInventoryByVaccinationCenter(key, centerID);
+//		return new ResponseEntity<>(inventory,HttpStatus.FOUND);
+//	}
 	
 	@GetMapping("/getByDate/{date}")
 	public ResponseEntity<List<VaccineInventory>> getInventoriesByDate(@RequestParam("key") String key,@RequestParam String date) throws LoginException{
@@ -72,5 +72,10 @@ public class VaccineInventoryController {
 		return new ResponseEntity<>(count,HttpStatus.CREATED);
 	}
 	
-	
+	@GetMapping("/getInventory/{CenterID}")
+	public ResponseEntity<List<VaccineCount>> getVaccineCountByCenter(@RequestParam("key") String key,@RequestParam Integer CenterID) throws LoginException, VaccinationCenterException, VaccineInventoryException{
+		VaccineInventory in=InventoryService.getInventoryByVaccinationCenter(key, CenterID);
+		List<VaccineCount> count=InventoryService.getVaccineCountByCenter(key, in);
+		return new ResponseEntity<>(count,HttpStatus.FOUND);
+	}
 }

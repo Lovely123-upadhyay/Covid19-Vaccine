@@ -21,10 +21,11 @@ public class VaccineCount {
 	
 	@OneToOne
 	private Vaccine vaccine;
-	
 	@ManyToOne
 	@JsonIgnore
 	private VaccineInventory inventory;
+	
+	private Integer inId;
 	
 	private Integer quantity;
 }

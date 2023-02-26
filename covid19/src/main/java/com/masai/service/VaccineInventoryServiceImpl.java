@@ -52,26 +52,27 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 			List<VaccineCount> found=countRepo.findByInventory(inventory).stream().filter(count->count.getVaccine().equals(v)).collect(Collectors.toList());
 			if(found.size()==0) {
 				VaccineCount c=new VaccineCount();
-				System.out.println(11);
+				//System.out.println(11);
 				c.setVaccine(v);
 				c.setQuantity(qty);
+				c.setInId(inId);
 				c.setInventory(inventory);
-				System.out.println(111);
+				//System.out.println(111);
 				VaccineCount saved=countRepo.save(c);
-				System.out.println(1111);
-				System.out.println(saved.toString());
+				//System.out.println(1111);
+				//System.out.println(saved.toString());
 				VaccineInventory Isaved=vaccineInventoryRepo.save(inventory);
-				System.out.println(Isaved.toString());
+				//System.out.println(Isaved.toString());
 				return saved;
 				
 			}else{
 				found.get(0).setQuantity(found.get(0).getQuantity()+qty);
-				System.out.println(1);
+				//System.out.println(1);
 				VaccineCount saved=countRepo.save(found.get(0));
-				System.out.println(2);
-				System.out.println(saved.toString());
+				//System.out.println(2);
+				//System.out.println(saved.toString());
 				VaccineInventory Isaved=vaccineInventoryRepo.save(inventory);
-				System.out.println(Isaved.toString());
+				//System.out.println(Isaved.toString());
 				return saved;
 			}
 			
@@ -110,10 +111,20 @@ public class VaccineInventoryServiceImpl implements VaccineInventoryService{
 		}
 	}
 
-//	@Override
-//	public List<VaccineInventory> getInventoryByVaccine(Vaccine v) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public List<VaccineCount> getVaccineCountByCenter(String key,VaccineInventory in) throws LoginException, VaccineInventoryException {
+		if(SessRepo.findByUuid(key)!=null) {
+			List<VaccineCount> list=countRepo.findByInventory(in);
+			if(list.size()!=0) {
+				return list;
+			}else {
+				throw new VaccineInventoryException("Sorry: This Inventory Is Empty!"); 
+			}
+		}else {
+			throw new LoginException("Please login as admin first !");
+		}
+	}
+
+
 
 }

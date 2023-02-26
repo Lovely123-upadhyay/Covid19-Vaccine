@@ -30,7 +30,7 @@ public class VaccineController {
 	}
 	
 	@GetMapping("/allVaccines")
-	public ResponseEntity<List<Vaccine>> getVaccines(@RequestParam("key") String key) throws LoginException{
+	public ResponseEntity<List<Vaccine>> getVaccines(@RequestParam("key") String key) throws LoginException, VaccineException{
 		List<Vaccine> list=vaccineService.allVaccines(key);
 		return new ResponseEntity<>(list,HttpStatus.ACCEPTED);
 	}
