@@ -44,4 +44,5 @@ Search User by Aadhar, Pan Details
 Many More ...
 
 #ER Diagram
-
+<br/>
+<img src="https://github.com/Lovely123-upadhyay/dear-attack-7758/blob/main/ER.png?raw=true"/>
