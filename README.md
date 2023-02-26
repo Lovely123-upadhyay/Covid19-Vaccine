@@ -15,9 +15,11 @@ MySQL
 Swagger
 
 <h2>#Team</h2>
-<a href="https://github.com/Lovely123-upadhyay">TeamLead: Lovely Upadhyay</a><br/>
-<a href="https://github.com/fw21-0395">Neeraj Kadian</a><br/>
-<a href="https://github.com/Sanket01Hiremath">Sanket Hiremath</a><br/>
+TeamLead:
+<a href="https://github.com/Lovely123-upadhyay"> Lovely Upadhyay</a><br/>
+Members:<br/>
+(1) <a href="https://github.com/fw21-0395">Neeraj Kadian</a><br/>
+(2) <a href="https://github.com/Sanket01Hiremath">Sanket Hiremath</a><br/>
 
 <h2>#Modules</h2>
 
