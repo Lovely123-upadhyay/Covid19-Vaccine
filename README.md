@@ -4,15 +4,8 @@ We have developed this REST API for an Covid-19 Application. This API performs a
 
 This project is developed by team of 3 Back-end Developers during construct week in Masai School
 
-<h2>#Tech Stack</h2>
-
-Java
-Spring Framework
-Spring Boot
-Spring Data JPA
-Hibernate
-MySQL
-Swagger
+<h2>#Tech Stack</h2><br/>
+<h3>Java || Spring Framework || Spring Boot || Spring Data JPA || Hibernate || MySQL || Swagger</h3>
 
 <h2>#Team</h2>
 TeamLead:
