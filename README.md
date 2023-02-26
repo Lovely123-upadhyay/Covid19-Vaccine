@@ -1,10 +1,10 @@
-#REST API for an Covid-19 Application
+<h2>#REST API for an Covid-19 Application</h2>
 
 We have developed this REST API for an Covid-19 Application. This API performs all the fundamental CRUD operations of any Covid-19 Application platform with user validation at every step.
 
 This project is developed by team of 3 Back-end Developers during construct week in Masai School
 
-#Tech Stack
+<h2>#Tech Stack</h2>
 
 Java
 Spring Framework
@@ -14,7 +14,12 @@ Hibernate
 MySQL
 Swagger
 
-#Modules
+<h2>#Team</h2>
+<a href="https://github.com/Lovely123-upadhyay">TeamLead: Lovely Upadhyay</a>
+<a href="https://github.com/fw21-0395">Neeraj Kadian</a>
+<a href="https://github.com/Sanket01Hiremath">Sanket Hiremath</a>
+
+<h2>#Modules</h2>
 
 Authentication Module
 Admin Module
@@ -25,7 +30,7 @@ Vaccine Module
 Vaccine Inventory Module
 Book Appointment Module
 
-#User Features
+<h2>#User Features</h2>
 
 User Registration
 Add Multiple Member
@@ -35,7 +40,7 @@ View Slots
 Book Appointment For Particular Date
 Many More ...
 
-#Admin Features
+<h2>#Admin Features</h2>
 
 Add/View Vaccine Centers
 Manage Vaccine/Vaccine Inventory
@@ -43,6 +48,6 @@ View All Users, All Vaccine Centers, All Vaccines, All Vaccine Inventory, View A
 Search User by Aadhar, Pan Details
 Many More ...
 
-#ER Diagram
+<h2>#ER Diagram</h2>
 <br/>
 <img src="https://github.com/Lovely123-upadhyay/dear-attack-7758/blob/main/ER.png?raw=true"/>
